@@ -16,7 +16,7 @@ class Employee:
             )
 
 #--------------------------------------------------------
-SIMPLE_PATH = r'C:\Users\atemple\source\repos\DBT230\Assignment 1 - data\people\simple/'
+SIMPLE_PATH = r'C:\Users\atemple\source\repos\DBT230\Group1_SimplePersistence\data\Assignment 1 - data\people\simple/'
 
 #SIMPLE_PATH = r'C:\Users\zhenx\Desktop\Assignment 1 - data (3)\people\simple/'
 
@@ -62,6 +62,10 @@ def add_employee(ID,firstName,lastName,hireYear):
     
 
 
+#----------------------Delete Employee----------------------------------------
+
+#----------------------Update Employee----------------------------------------
+
 def update_employee(id, first_name, last_name, hire_date):
     file_name = str(id) + ".txt"
     file_path = SIMPLE_PATH + file_name
@@ -71,16 +75,10 @@ def update_employee(id, first_name, last_name, hire_date):
         file_reference.write(string_to_write)
         file_reference.close()
 
-
-#----------------------Delete Employee----------------------------------------
-
-#----------------------Update Employee----------------------------------------
-
 #-------------------------------------------------------------    
 
 #print_people_details(SIMPLE_PATH)
 #print_employee(SIMPLE_PATH)
-
 
 ID = input("Enter your ID: ")
 firstName = input("Enter first name: ")
@@ -88,3 +86,8 @@ lastName = input("Enter last name: ")
 hireYear = input("Enter hire year: ")
 add_employee(ID,firstName,lastName,hireYear)
 
+ID2 = input("Enter your ID: ")
+firstName2 = input("Enter first name: ")
+lastName2 = input("Enter last name: ")
+hireYear2 = input("Enter hire year: ")
+update_employee(ID2,firstName2,lastName2,hireYear2)
