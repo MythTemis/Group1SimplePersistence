@@ -1,4 +1,5 @@
 import os
+import pickle
 
 #-------Employee Class----------------
 class Employee:
@@ -47,7 +48,9 @@ def print_employee(path):
 
 #----------------------Add Employee----------------------------------------
 
-SIMPLE_PATH2 = r'C:\Users\zhenx\Desktop\Assignment 1 - data (3)\people\long/'
+#SIMPLE_PATH2 = r'C:\Users\zhenx\Desktop\Assignment 1 - data (3)\people\long/'
+
+SIMPLE_PATH2 = r'C:\Users\atemple\source\repos\DBT230\Group1_SimplePersistence\data\Assignment 1 - data\people\long serialized/'
 
 def add_employee(ID,firstName,lastName,hireYear):
     location_file = SIMPLE_PATH2
@@ -68,7 +71,7 @@ def add_employee(ID,firstName,lastName,hireYear):
 
 def update_employee(id, first_name, last_name, hire_date):
     file_name = str(id) + ".txt"
-    file_path = SIMPLE_PATH + file_name
+    file_path = SIMPLE_PATH2 + file_name
     if os.path.isfile(file_path):
         file_reference = open(file_path, "w")
         string_to_write = ", ".join([str(id), first_name, last_name, str(hire_date),])
@@ -77,17 +80,43 @@ def update_employee(id, first_name, last_name, hire_date):
 
 #-------------------------------------------------------------    
 
+#-----------------------Serialize All---------------------------------
+
+def serialize_all():
+    file_path = SIMPLE_PATH2
+    for f in file_path:
+        
+    #create employee object for each file
+        pickle.dump(ser_emp, 'w')
+
+#------------------------GetSerializedEmployee(id)------------------------
+
+def get_serialized_Employee(id):
+    file_name = str(id) + ".ser"
+    file_path = SIMPLE_PATH2 + file_name
+    if os.path.isfile(file_path):
+        with open(file_path, 'rb') as file:
+            employee = pickle.load(file)   
+            print(employee)
+            file.close()
+            return employee
+
+
+
 #print_people_details(SIMPLE_PATH)
 #print_employee(SIMPLE_PATH)
 
-ID = input("Enter your ID: ")
-firstName = input("Enter first name: ")
-lastName = input("Enter last name: ")
-hireYear = input("Enter hire year: ")
-add_employee(ID,firstName,lastName,hireYear)
+#ID = input("Enter your ID: ")
+#firstName = input("Enter first name: ")
+#lastName = input("Enter last name: ")
+#hireYear = input("Enter hire year: ")
+#add_employee(ID,firstName,lastName,hireYear)
 
-ID2 = input("Enter your ID: ")
-firstName2 = input("Enter first name: ")
-lastName2 = input("Enter last name: ")
-hireYear2 = input("Enter hire year: ")
-update_employee(ID2,firstName2,lastName2,hireYear2)
+#ID2 = input("Enter your ID: ")
+#firstName2 = input("Enter first name: ")
+#lastName2 = input("Enter last name: ")
+#hireYear2 = input("Enter hire year: ")
+#update_employee(ID2,firstName2,lastName2,hireYear2)
+
+ID3 = input("Enter id: ")
+get_serialized_Employee(ID3)
